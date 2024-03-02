@@ -45,7 +45,7 @@ const authModel: ModelDefined<IAuthDocument , AuthUserCreationAttributes> = sequ
     createdAt:{
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: Date.now(),
+        defaultValue: Date.now,
     },
     passwordResetToken:{
         type: DataTypes.STRING,
@@ -54,7 +54,7 @@ const authModel: ModelDefined<IAuthDocument , AuthUserCreationAttributes> = sequ
     passwordResetExpires:{
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: Date.now(),
+        defaultValue: Date.now,
     }
 },{
     indexes:[

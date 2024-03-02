@@ -27,7 +27,7 @@ export const createAuthUser = async(data :IAuthDocument): Promise<IAuthDocument>
 
 export const getAuthUserById = async(id:number): Promise<IAuthDocument> =>{
     const user:Model = await authModel.findOne({where:{id},attributes:{exclude:['password']}}) as Model;
-    return user.dataValues;
+    return user?.dataValues;
 
 };
 
@@ -38,30 +38,30 @@ export const getUserByUserNameOrEmail = async(username:string , email :string): 
     attributes:{
         exclude:['password']
     }}) as Model;
-    return user.dataValues;
+    return user?.dataValues;
 
 };
 
 export const getUserByUserName= async(username:string): Promise<IAuthDocument> =>{
     const user:Model = await authModel.findOne({where:{username:firstLetterUppercase(username)},attributes:{exclude:['password']}}) as Model;
-    return user.dataValues;
+    return user?.dataValues;
 };
 
 export const getUserByEmail= async(email:string): Promise<IAuthDocument> =>{
     const user:Model = await authModel.findOne({where:{email:lowerCase(email)},attributes:{exclude:['password']}}) as Model;
-    return user.dataValues;
+    return user?.dataValues;
 };
 
 export const getAuthUserByVerifyToken = async(emailVerificationToken:string): Promise<IAuthDocument> =>{
     const user:Model = await authModel.findOne({where:{emailVerificationToken},attributes:{exclude:['password']}}) as Model;
-    return user.dataValues;
+    return user?.dataValues;
 };
 
 export const getAuthUserByPasswordToken = async(passwordResetToken:string): Promise<IAuthDocument> =>{
     const user:Model = await authModel.findOne({where:{
         [Op.and]:[{passwordResetToken},{passwordResetExpires:{[Op.gt]:Date.now()}}],
     },attributes:{exclude:['password']}}) as Model;
-    return user.dataValues;
+    return user?.dataValues;
 };
 
 ///Updation 
