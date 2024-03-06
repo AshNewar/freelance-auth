@@ -22,7 +22,7 @@ export async function createSeedData(req:Request , res : Response) {
         const email = faker.internet.email();
         const country = faker.location.country();
         const profilePicture = faker.image.avatar();
-        const password = '123456';
+        const password = '12345678';
         const userExist= await getUserByUserNameOrEmail(name,email);
         if(userExist){
             throw new BadRequestError('User Already Exist','Seed Data Error');

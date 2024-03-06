@@ -4,6 +4,7 @@ import { signInSchema } from '@auth/scheme/signin';
 import { getUserByEmail, getUserByUserName, signToken } from '@auth/services/auth.service';
 import { Request, Response } from 'express';
 import { omit } from 'lodash';
+import {StatusCodes} from 'http-status-codes';
 
 
 export async function read(req:Request , res:Response):Promise<void>{
@@ -23,6 +24,6 @@ export async function read(req:Request , res:Response):Promise<void>{
     }
     const userToken:string =signToken(existingUser.id! , existingUser.username!, existingUser.email!);
     const userData:IAuthDocument =omit(existingUser , ['password']);
-    res.status(200).json({message:'User Sign In Successfully',user:userData,token:userToken});
+    res.status(StatusCodes.OK).json({message:'User Sign In Successfully',user:userData,token:userToken});
 
 }
